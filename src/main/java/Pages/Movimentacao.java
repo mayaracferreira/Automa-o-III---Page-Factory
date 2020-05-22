@@ -1,38 +1,62 @@
 package Pages;
 
-import hooks.BaseTest;
 import hooks.DefaultProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
 
 public class Movimentacao extends BaseTest implements DefaultProperties {
 
-    //criar movimentação
-    private By btnMovimentacao = By.xpath("//a[@href='/movimentacao']");
-    private By txtTipo = By.id("tipo");
-    private By txtDataTransacao = By.id("data_transacao");
-    private By txtDataPagamento = By.id("data_pagamento");
-    private By txtDescricao = By.id("descricao");
-    private By txtInteressado = By.id("interessado");
-    private By txtValor = By.id("valor");
-    private By slcConta = By.id("conta");
-    private By slcStatus = By.id("status_pago");
-    private By btnSubmit = By.cssSelector("button[type='submit']");
 
-    public void CriarMovimentação() {
+    @FindBy (xpath ="//a[@href='/movimentacao']" )
+    WebElement btnMovimentacao;
+
+    @FindBy (id = "tipo")
+    WebElement txtTipo;
+
+    @FindBy (id = "data_transacao")
+    WebElement txtDataTransacao;
+
+    @FindBy (id = "data_pagamento")
+    WebElement txtDataPagamento;
+
+    @FindBy (id = "descricao")
+    WebElement txtDescricao;
+
+    @FindBy (id = "interessado")
+    WebElement txtInteressado;
+
+    @FindBy (id = "valor")
+    WebElement txtValor;
+
+    @FindBy (id = "conta")
+    WebElement slcConta;
+
+    @FindBy (id = "status_pago")
+    WebElement slcStatus;
+
+    @FindBy (css = "button[type='submit']")
+    WebElement btnSubmit;
 
 
-        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        getDriver().findElement(btnMovimentacao).click();
-        getDriver().findElement(txtTipo).sendKeys("receita");
-        getDriver().findElement(txtDataTransacao).sendKeys("20/04/2020");
-        getDriver().findElement(txtDataPagamento).sendKeys("21/04/2020");
-        getDriver().findElement(txtDescricao).sendKeys("aluguel");
-        getDriver().findElement(txtInteressado).sendKeys("Jose");
-        getDriver().findElement(txtValor).sendKeys("1000");
-        getDriver().findElement(slcConta).sendKeys("Aluguel");
-        getDriver().findElement(slcStatus).click();
-        getDriver().findElement(btnMovimentacao).click();
+    public void CriarMovimentação(String tipo, String dataMovimentacao, String dataPagamento, String descricao, String interessado, String valor, String conta, String status ) {
+
+        btnMovimentacao.click();
+        txtTipo.sendKeys(tipo);
+        txtDataTransacao.sendKeys(dataMovimentacao);
+        txtDataPagamento.sendKeys(dataPagamento);
+        txtDescricao.sendKeys(descricao);
+        txtInteressado.sendKeys(interessado);
+        txtValor.sendKeys(valor);
+        slcConta.sendKeys(conta);
+        slcStatus.sendKeys(status);
+
+    }
+
+    public void Salvar (){
+        btnSubmit.click();
+
     }
 }

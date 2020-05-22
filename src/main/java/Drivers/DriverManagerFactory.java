@@ -1,30 +1,40 @@
 package Drivers;
 
-import org.openqa.selenium.edge.EdgeDriver;
 
-public class DriverManagerFactory {
+import lombok.Getter;
+import lombok.Setter;
+import  org.openqa.selenium.WebDriver;
 
-    public enum DriverType {
-        CHROME,
-        EDGE;
-    }
 
-    public static DriverManager getManager(DriverType type) {
-        DriverManager driverManager;
+import  class DriverManagerFactory {
 
-        switch (type) {
-            case CHROME:
-                driverManager = new ChromeDriverManager();
-                break;
-            case EDGE:
-                driverManager = new EdgeDriverManager();
-                break;
+    @Getter @Setter
+    public static WebDriver driver;
 
-            default:
-                driverManager = new ChromeDriverManager();
-                break;
+    public static  DriverManagerFactory {
+
+        public enum DriverType {
+            CHROME,
+            EDGE;
         }
-        return driverManager;
+
+        public static DriverManager getManager(DriverType type) {
+            DriverManager driverManager;
+
+            switch (type) {
+                case CHROME:
+                    driverManager = new ChromeDriverManager();
+                    break;
+                case EDGE:
+                    driverManager = new EdgeDriverManager();
+                    break;
+
+                default:
+                    driverManager = new ChromeDriverManager();
+                    break;
+            }
+            return driverManager;
+        }
     }
 }
 
